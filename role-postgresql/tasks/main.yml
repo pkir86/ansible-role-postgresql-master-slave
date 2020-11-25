@@ -1,0 +1,6 @@
+---
+# tasks file for role-postgresql
+- include: pgsql_preflight.yml
+- include: pgsql_common.yml
+- include: pgsql_master.yml
+- include: pgsql_slave.yml

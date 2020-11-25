@@ -1,0 +1,9 @@
+[pgmaster]
+pgmaster01 ansible_host=192.168.98.24 ansible_connection=ssh ansible_user=vagrant ansible_ssh_private_key_file=~/insecure_private_key
+ 
+[pgslave]
+pgslave01 ansible_host=192.168.98.25 ansible_connection=ssh ansible_user=vagrant ansible_ssh_private_key_file=~/insecure_private_key
+ 
+[all:children]
+pgmaster
+pgslave

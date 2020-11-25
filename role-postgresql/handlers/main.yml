@@ -1,0 +1,6 @@
+---
+# handlers file for role-postgresql
+- name: Reload firewalld
+  systemd:
+    name: firewalld
+    state: reloaded

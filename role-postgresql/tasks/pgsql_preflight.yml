@@ -1,0 +1,21 @@
+---
+# As Vagrant does not assign the IPs to interfaces always in the same order, we need to find the public and replication IPs dynamically (we can't use ethX numbering)
+- name: Find public ip address
+  set_fact:
+    public_ip_address: "{{ item }}"
+  with_items: "{{ ansible_all_ipv4_addresses }}"
+  when: public_network in "{{ item }}"
+
+- name: Find replication ip address
+  set_fact:
+    replication_ip_address: "{{ item }}"
+  with_items: "{{ ansible_all_ipv4_addresses }}"
+  when: replication_network in "{{ item }}"
+
+- name: Print public IP addresses
+  debug:
+    var: public_ip_address
+
+- name: Print replication IP addresses
+  debug:
+    var: replication_ip_address

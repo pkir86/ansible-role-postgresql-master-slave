@@ -1,0 +1,18 @@
+- hosts: all
+  become: true
+  gather_facts: false
+  pre_tasks:
+  - name: Wait for target connection to become reachable
+    wait_for_connection:
+      connect_timeout: 5
+      delay: 0
+      sleep: 1
+      timeout: 300
+    tags: always
+  - name: Collect facts from servers
+    setup:
+      gather_subset: "all"
+      gather_timeout: 10
+    tags: always
+  roles:
+    - { role: role-postgresql }
